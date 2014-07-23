@@ -85,6 +85,19 @@ describe "Authentication" do
           before { delete microposts_path(FactoryGirl.create(:micropost)) }
           specify { expect(response).to redirect_to(signin_path) }
         end
+
+        describe "in the Relationships controller" do
+          descrbie "submitting to the create action" do
+            before { post relationships_path }
+            specify { expect(response).to redirect_to(signin_path) }
+          end
+
+          describe "submitting to the delete action" do
+            before { delete relationships_path(1) }
+            specify { expect(response).to redirect_to(signin_path) }
+          end
+
+        end
       end
 
       describe "as wrong user" do
